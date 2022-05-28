@@ -16,7 +16,10 @@ pipeline {
     }
     stage('terraform-init') {
       steps {
-        sh '/bin/terraform init'
+        sh '''
+          cd dev
+          terraform init
+        fi '''
       }
     }
     stage('terraform-apply') {
