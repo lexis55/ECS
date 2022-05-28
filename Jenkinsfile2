@@ -1,0 +1,38 @@
+pipeline {
+  agent { label 'linux'}
+  options {
+    skipDefaultCheckout(true)
+  }
+  stages{
+    stage('clean workspace') {
+      steps {
+        cleanWs()
+      }
+    }
+    stage('checkout') {
+      steps {
+        checkout scm
+      }
+    }
+    stage('terraform-init') {
+      steps {
+        sh '/bin/terraform init'
+      }
+    }
+    stage('terraform-apply') {
+      steps {
+        sh '''
+        TARGET_ENV=$BRANCH_NAME
+        if [ -d "${TARGET_ENV}/" ]; then
+          cd ${TARGET_ENV}
+          terraform apply -input=false -auto-approve
+        fi'''
+      }
+    }
+  }
+  post {
+    always {
+      cleanWs()
+    }
+  }
+}
