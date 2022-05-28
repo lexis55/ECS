@@ -22,10 +22,8 @@ pipeline {
     stage('terraform-apply') {
       steps {
         sh '''
-        TARGET_ENV=$BRANCH_NAME
-        if [ -d "${TARGET_ENV}/" ]; then
-          cd ${TARGET_ENV}
-          terraform apply -input=false -auto-approve
+          cd dev
+          terraform plan
         fi'''
       }
     }
