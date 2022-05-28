@@ -19,7 +19,7 @@ pipeline {
         sh '''
           cd dev
           terraform init
-        fi '''
+        fi'''
       }
     }
     stage('terraform-apply') {
