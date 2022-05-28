@@ -14,18 +14,11 @@ pipeline {
         checkout scm
       }
     }
-    stage('terraform-init') {
+    stage('terraform-init-apply') {
       steps {
         sh '''
           cd dev
           terraform init
-        fi'''
-      }
-    }
-    stage('terraform-apply') {
-      steps {
-        sh '''
-          cd dev
           terraform plan
         fi'''
       }
