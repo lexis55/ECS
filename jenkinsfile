@@ -19,7 +19,7 @@ pipeline {
         sh '/bin/terraform init'
       }
     }
-    stage('terraform-credentials') {
+    stage('terraform-login') {
       steps {
         sh 'export AWS_ACCESS_KEY_ID=AKIAURVEKQG3PND4EBPW'
         sh 'export AWS_SECRET_ACCESS_KEY=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'
