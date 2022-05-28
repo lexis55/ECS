@@ -14,12 +14,19 @@ pipeline {
         checkout scm
       }
     }
-    stage('terraform-init-apply') {
+    stage('terraform-init') {
+      steps {
+        sh '/bin/terraform init'
+      }
+    }
+    stage('terraform-apply') {
+      when { anyOf {branch "prod";branch "dev";branch "test";changeRequest() } }
       steps {
         sh '''
-          cd dev
-          terraform init
-          terraform plan
+        TARGET_ENV=$BRANCH_NAME
+        if [ -d "${TARGET_ENV}/" ]; then
+          cd ${TARGET_ENV}
+          terraform apply -input=false -auto-approve
         fi'''
       }
     }
