@@ -14,7 +14,12 @@ pipeline {
         checkout scm
       }
     }
-    stage('terraform') {
+    stage('terraform-init') {
+      steps {
+        sh '/bin/terraform init'
+      }
+    }
+    stage('terraform-apply') {
       steps {
         sh '/bin/terraform apply -auto-approve -no-color'
       }
