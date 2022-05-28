@@ -26,7 +26,11 @@ pipeline {
       }
     }
     stage('terraform-apply') {
+      when { anyOf {branch "prod";branch "dev" } }
       steps {
+        TARGET_ENV=$BRANCH_NAME
+          if [ -d "example-pipelines/environments/${TARGET_ENV}/" ]; then
+            cd example-pipelines/environments/${TARGET_ENV}
         sh '/bin/terraform apply -auto-approve -no-color'
       }
     }
