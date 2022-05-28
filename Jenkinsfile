@@ -26,7 +26,7 @@ pipeline {
       }
     }
     stage('terraform-apply') {
-      when { anyOf {branch "prod";branch "dev" } }
+      when { anyOf {branch "prod";branch "dev";branch "test" } }
       steps {
         sh '''
         TARGET_ENV=$BRANCH_NAME
