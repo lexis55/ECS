@@ -2,6 +2,7 @@ pipeline {
   agent { label 'linux'}
   options {
     skipDefaultCheckout(true)
+    ansiColor('xterm')
   }
   stages{
     stage('clean workspace') {
