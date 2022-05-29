@@ -2,6 +2,7 @@ pipeline {
   agent { label 'linux'}
   options {
     skipDefaultCheckout(true)
+    ansiColor('xterm')
   }
   stages{
     stage('clean workspace') {
@@ -19,15 +20,9 @@ pipeline {
         sh '/bin/terraform init'
       }
     }
-    stage('terraform-login') {
-      steps {
-        sh 'export AWS_ACCESS_KEY_ID= '
-        sh 'export AWS_SECRET_ACCESS_KEY= '
-      }
-    }
     stage('terraform-apply') {
       steps {
-        sh '/bin/terraform apply -auto-approve -no-color'
+        sh '/bin/terraform apply -auto-approve
       }
     }
   }
