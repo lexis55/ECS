@@ -2,7 +2,6 @@ pipeline {
   agent { label 'linux'}
   options {
     skipDefaultCheckout(true)
-    ansiColor('xterm')
   }
   environment {
     AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
