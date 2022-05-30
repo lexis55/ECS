@@ -4,10 +4,10 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket         = "ansong844-terraform-backend-bucket"
+    bucket         = "ansong84-terraform-backend-bucket"
     key            = "terraform-backend/test/terraform.tfstate"
-    region         = var.region
-    dynamodb_table = "ansong844-backend-state-lock"
+    region         = "us-east-2"
+    dynamodb_table = "backend-state-lock"
     encrypt        = true
   }
 }
