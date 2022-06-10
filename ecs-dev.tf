@@ -122,7 +122,7 @@ resource "aws_iam_role_policy_attachment" "dev-task-execution-role" {
 }
 
 data "aws_vpc" "custom" {
-  id = "vpc-03b948902ad281dcd"
+  id = "vpc-0560852d450953e84"
 }
 
 data "aws_subnets" "custom" {
