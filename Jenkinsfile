@@ -27,7 +27,7 @@ pipeline {
       steps {
         sh "echo $AWS_ACCESS_KEY_ID"
         sh "echo $AWS_SECRET_ACCESS_KEY"
-        sh '/bin/terraform destroy -auto-approve'
+        sh '/bin/terraform apply -auto-approve'
       }
     }
   }
